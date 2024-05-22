@@ -1,0 +1,17 @@
+import requests
+from bs4 import BeautifulSoup
+import openpyxl
+
+url = 'https://top.baidu.com/board?tab=realtime'
+response = requests.get(url)
+html = response.content
+
+hot_searches = []
+for item in soup.find_all('div', {'class': 'c-single-text-ellipsis'}):
+    hot_searches.append(item.text)
+
+
+
+workbook = openpyxl.Workbook()
+sheet = workbook.active
+sheet.title = 'Baidu Hot Searches'
