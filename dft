@@ -1,0 +1,104 @@
+      html.Div(
+                style={'position': 'relative', 'margin': '0 auto', 'width': '100%', 'padding-bottom': '50%', },
+                children=[
+                    dcc.Loading(
+                        children=[
+                            dcc.Graph(
+                                id='graph_day_count_rank',
+                                style={'position': 'absolute', 'width': '100%', 'height': '100%', 'top': '0',
+                                       'left': '0', 'bottom': '0', 'right': '0'},
+                                config={'displayModeBar': False},
+                            ),
+                        ],
+                        type='dot',
+                        style={'position': 'absolute', 'top': '50%', 'left': '50%', 'transform': 'translate(-50%,-50%)'}
+                    ),
+                ],
+            )
+        ]
+    ),
+
+
+
+    # 某日不同时刻访问次数散点图
+    html.Div(
+        style={'margin-bottom': '150px'},
+        children=[
+            html.Div(
+                style={'border-top-style': 'solid', 'border-bottom-style': 'solid'},
+                className='row',
+                children=[
+                    html.Span(
+                        children='某日不同时刻访问次数, 选择时刻: ',
+                        style={'font-weight': 'bold', 'color': 'red', 'line-height':'34px', 'margin-right': '10px', 'float':'left'}
+                    ),
+
+                    dcc.Dropdown(
+                        id = 'dropdown_time_1',
+                        className='three columns',
+                        options=[
+                            {'label': '初始化', 'value': '初始化'}
+                        ],
+                        clearable=False,
+                        searchable=False
+                    )
+                ]
+            ),
+
+            html.Div(
+                style={'position': 'relative', 'margin': '0 auto', 'width': '100%', 'padding-bottom': '50%', },
+                children=[
+                    dcc.Loading(
+                        children=[
+                            dcc.Graph(
+                                id='graph_day_diff_time_count',
+                                style={'position': 'absolute', 'width': '100%', 'height': '100%', 'top': '0',
+                                       'left': '0', 'bottom': '0', 'right': '0'},
+                                config={'displayModeBar': False},
+                            ),
+                        ],
+                        type='dot',
+                        style={'position': 'absolute', 'top': '50%', 'left': '50%', 'transform': 'translate(-50%,-50%)'}
+                    ),
+                ],
+            )
+        ]
+    ),
+
+
+
+
+    # 访问次数最多的10个URL
+    html.Div(
+        style={'margin-bottom': '150px'},
+        children=[
+            html.Div(
+                style={'border-top-style': 'solid', 'border-bottom-style': 'solid'},
+                className='row',
+                children=[
+                    html.Span(
+                        children='访问次数最多的100个URL',
+                        style={'font-weight': 'bold', 'color': 'red'}
+                    )
+                ]
+            ),
+
+            html.Div(
+                style={"overflowY": "scroll"},
+                children=[
+                    dash_table.DataTable(
+                        id='table_url_count_rank',
+                        columns=[
+                            {'name': '编号', 'id': 'id'},
+                            {'name': '访问次数', 'id': 'count'},
+                            {'name': '网页地址', 'id': 'url'},
+                            {'name': '网页标题', 'id': 'title'}
+                        ],
+                        data=[
+                            {'id': '0', 'url': '初始化', 'title': '初始化', 'count': '初始化'}
+                        ],
+                        style_header={
+                            'fontWeight': 'bold',
+                            'backgroundColor': 'white',
+                            'borderBottom': '1px solid black',
+                        },
