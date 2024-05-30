@@ -1,0 +1,98 @@
+import sys
+import os
+list = []
+# 存档
+def save():
+    with open("save.txt", "w", encoding="utf=8") as f: # 防止文件泄漏，加with
+        for s in list:
+            f.write(f"{s['name']}\t{s['studentid']}\t{s["gender"]}\t{s["year"]}")
+        print(f"共{len(list)}条信息")
+# 读档
+def load():
+    if not os.path.exists("save.txt"):
+        return
+    global list
+    list = []
+    with open("save.txt", "r", encoding='utf8') as f: # "save.txt表示相对路径，若没有这个文件，系统会自动生成文件"
+        for s in f:
+            line = s.strip()
+            split = line.split("\t")
+            information = {
+                "name": split[0],
+                "studentid": split[1],
+                "gender": split[2],
+                "year": split[3],
+            }
+            list.append(information)
+            print(f"共有{len(list)}条信息")
+def main():
+    print("------------------------------------")
+    print("|        欢迎登入学生管理系统          |")
+    print("------------------------------------")
+def mune():
+    print("------------------------------------")
+    print("1.增加")
+    print("2.删除")
+    print("3.展示")
+    print("4.查找")
+    print("5.退出")
+    inputs = input("请输入你要选择的数字：")
+    return inputs
+def add():
+    name = input("请输入名字：")
+    studentid = input("请输入学号：")
+    gender = input("请输入性别：")
+    year = input("请输入年龄：")
+    if gender not in("男","女"):
+        print("输入错误，请重新输入")
+        return
+    student = {
+        "name": name,
+        "studentid": studentid,
+        "gender": gender,
+        "year": year,
+    }
+    list.append(student)
+    save()
+    print("输入成功！")
+def erase():
+    studentid = input("请输入你要删除的学生学号：")
+    for s in list:
+        if studentid == s["studentid"]:
+            print(f"要删除的学生信息为：{s['name']}\t{s['studentid']}\t{s["gender"]}\t{s["year"]}")
+            list.remove(s)
+            save()
+            print("删除成功！")
+            return
+    print("没有这个学生！")
+def show():
+    for s in list:
+        print(f"{s['name']}\t{s['studentid']}\t{s["gender"]}\t{s["year"]}")
+        print(f"数据共有{len(list)}条")
+def find():
+    name = input("请输入你要查找的学生名字：")
+    for s in list:
+        if name == s["name"]:
+            print(f"{s['name']}\t{s['studentid']}\t{s["gender"]}\t{s["year"]}")
+            return
+    print("抱歉，没有这个学生")
+
+main()
+load()
+while True:
+    digits = mune()
+    if digits == "1":
+        add()
+    elif digits == "2":
+        erase()
+    elif digits == "3":
+        show()
+    elif digits == "4":
+        find()
+    elif digits == "5":
+        print("再见，祝你生活愉快！")
+        sys.exit(0)
+    else:
+        print("你的输入性别有误，请重新输入")
+        continue
+
