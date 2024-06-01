@@ -1,0 +1,33 @@
+void InitSnake(pGSnake ps) {
+ 
+	//创建五个蛇节点，并完成头插
+	pSnakeNode cur = NULL;
+	int i = 0;
+	for (i = 0; i < 5; i++)
+	{
+		cur = (pSnakeNode)malloc(sizeof(SnakeNode));
+		cur->next = NULL;
+		cur->x = POS_X - i * 2;
+		cur->y = POS_Y;
+		if (ps->_pSnake == NULL) {
+			ps->_pSnake = cur;
+		}
+		else {
+			cur->next = ps->_pSnake;
+			ps->_pSnake = cur;
+		}
+	}
+	//打印蛇
+	cur = ps->_pSnake;
+	while (cur) {
+		SetPos(cur->x,cur->y);
+		wprintf(L"%lc",BODY);
+		cur = cur->next;
+	}
+	//初始化游戏
+	ps->_SleepTime = 200;
+	ps->_Score = 0;
+	ps->_Dir = RIGHT;
+	ps->_Status = OK;
+	ps->_FoodWeight = 10;
+}
