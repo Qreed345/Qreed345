@@ -1,0 +1,16 @@
+Array.prototype.myReduce = function (cb, initialValue) {
+  const arr = this; //this就是调用reduce方法的数组
+  let total = initialValue ? initialValue : arr[0]; //不传默认取数组第一项
+  let startIndex = initialValue ? 0 : 1; // 有初始值的话从0遍历，否则从1遍历
+  for (let i = startIndex; i < arr.length; i++) {
+    total = cb(total, arr[i], i, arr); //参数为初始值、当前值、索引、当前数组
+  }
+  return total;
+};
+ 
+//测试
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let res = arr.myReduce((total, cur) => {
+  return total + cur;
+}, 0);
+console.log(res);//55
