@@ -1,0 +1,12 @@
+{
+    "msg": "操作成功",
+    "code": 200,
+    "data": {
+        "timeStamp": "1692334223808",
+        "package": "prepay_id=wx18125024326178678d4e07673e277c0000",
+        "paySign": "ocI64smXYkantoHEIkv7fibP0Y83pUmoVN1pQAjrJnFRI75sXCmQt09emPMhZJ+ujuemaGinJdJjmvGZv1JFoWvGSaMv8imDxOQV2EBr9QI+gybtUyC57+H2PhjXIR4gF0M8n7yv6Q9TA+7EIfpXOTaMJjDzM4AkFhAwz/quUAAEJVPLuaMsyF1xqi1qSY9AnE309YhqVG6ETDbZeP9/fuGCs9gD1HdD14HF4BndU696wR4TQdoiTzIyOokrE21oZLdK6Tp6sBPj2mGiIFX8viEHxq8GWOEMOIQXlr4NId4hrYA1Nn6xLk2Ka75t2t8L5V//3rWmbGSOaE5nrkeJcg==",
+        "appId": "xxxxxxxxxxxxxx",
+        "signType": "RSA",
+        "nonceStr": "KFW6FBHHDMALH1A39FM07HKXM7I0T1GR"
+    }
+}
