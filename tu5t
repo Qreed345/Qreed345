@@ -1,0 +1,24 @@
+a = 10
+b = 3.14
+c = "hello"
+ 
+print(type(a))  # <class 'int'>
+print(type(b))  # <class 'float'>
+print(type(c))  # <class 'str'>
+ 
+if type(a) == type(b):
+    print("Same type")
+else:
+    print("Different types")  # 输出，因为a是int，b是float
+ 
+class Animal:
+    pass
+ 
+class Dog(Animal):
+    pass
+ 
+d = Dog()
+ 
+print(isinstance(d, Dog))  # True，因为d是Dog类的实例
+print(isinstance(d, Animal))  # True，因为d是Animal类的子类的实例
+print(isinstance(d, object))  # True，因为所有类都是object类的子类
